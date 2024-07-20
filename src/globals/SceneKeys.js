@@ -1,22 +1,24 @@
 const SceneKeys = {
   Boot: 'BootScene',
+  Credits: 'CreditsScene',
+  GameScene: 'GameScene',
+  GameComplete: 'GameCompleteScene',
+  GameOver: 'GameOverScene',
+  Options: 'OptionsScene',
   Preloader: 'PreloaderScene',
   Title: 'TitleScene',
-  Credits: 'CreditsScene',
-  Options: 'OptionsScene',
-  GameOver: 'GameOverScene',
-  GameComplete: 'GameCompleteScene',
   UISceneKey: 'UserInterfaceScene'
 }
 
 export default SceneKeys
 export const {
   Boot,
+  Credits,
+  GameScene,
+  GameComplete,
+  GameOver,
+  Options,
   Preloader,
   Title,
-  Credits,
-  Options,
-  GameOver,
-  GameComplete,
   UISceneKey
 } = SceneKeys

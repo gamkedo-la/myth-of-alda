@@ -1,21 +1,23 @@
 /* global Phaser */
 import Boot from './src/scenes/Boot.js'
+import Credits from './src/scenes/Credits.js'
+import GameScene from './src/scenes/Game.js'
+import GameComplete from './src/scenes/GameComplete.js'
+import GameOver from './src/scenes/GameOver.js'
+import Options from './src/scenes/Options.js'
 import Preloader from './src/scenes/Preloader.js'
 import Title from './src/scenes/Title.js'
-import Credits from './src/scenes/Credits.js'
-import Options from './src/scenes/Options.js'
-import GameOver from './src/scenes/GameOver.js'
-import GameComplete from './src/scenes/GameComplete.js'
 import UserInterface from './src/scenes/UIScene.js'
 
 const scenes = [
   Boot,
+  Credits,
+  GameScene,
+  GameComplete,
+  GameOver,
+  Options,
   Preloader,
   Title,
-  Credits,
-  Options,
-  GameOver,
-  GameComplete,
   UserInterface
 ]
 
@@ -32,7 +34,11 @@ const Game = new Phaser.Game({
   input: {
     keyboard: true
   },
-  pixelArt: true
+  pixelArt: true,
+  parent: 'game',
+  dom: {
+    createContainer: true
+  }
 })
 
 export default Game
