@@ -1,0 +1,20 @@
+{
+  "name": "myth-of-alda",
+  "version": "1.0.0",
+  "description": "A Text Adventure 'like' borrowing elements from the Legend of Zelda and Dragon Warrior",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamkedo-la/myth-of-alda.git"
+  },
+  "author": "H Trayford with the support of members of HTGD",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "eslint": "^9.7.0",
+    "globals": "^15.8.0"
+  }
+}
