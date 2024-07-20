@@ -11,12 +11,12 @@ class PreloaderScene extends Phaser.Scene {
     this.load.image('example', 'path/to/your/asset.png')
 
     // Emit progress events
-    this.load.on('progress', (value) => {
-      this.scene.get(Boot).events.emit('progress', value)
+    this.load.on(Phaser.Loader.Events.PROGRESS, (value) => {
+      this.scene.get(Boot).events.emit(Phaser.Loader.Events.PROGRESS, value)
     })
 
-    this.load.on('complete', () => {
-      this.scene.get(Boot).events.emit('complete')
+    this.load.on(Phaser.Loader.Events.COMPLETE, () => {
+      this.scene.get(Boot).events.emit(Phaser.Loader.Events.COMPLETE)
     })
   }
 

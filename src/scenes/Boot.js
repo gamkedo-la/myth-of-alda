@@ -25,13 +25,13 @@ class BootScene extends Phaser.Scene {
     const progressBar = this.add.graphics()
 
     // Listen for progress events from the Preloader Scene
-    this.load.on('progress', (value) => {
+    this.load.on(Phaser.Loader.Events.PROGRESS, (value) => {
       progressBar.clear()
       progressBar.fillStyle(0x0000ff, 1)
       progressBar.fillRect(progressBarX, progressBarY, progressBarWidth * value, progressBarHeight)
     })
 
-    this.load.on('complete', () => {
+    this.load.on(Phaser.Loader.Events.COMPLETE, () => {
       progressBar.destroy()
       progressBox.destroy()
     })
