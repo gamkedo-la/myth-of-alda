@@ -1,6 +1,7 @@
 /* global Phaser */
 import Boot from './src/scenes/Boot.js'
 import Preloader from './src/scenes/Preloader.js'
+import Title from './src/scenes/Title.js'
 import Credits from './src/scenes/Credits.js'
 import Options from './src/scenes/Options.js'
 import GameOver from './src/scenes/GameOver.js'
@@ -10,6 +11,7 @@ import UserInterface from './src/scenes/UIScene.js'
 const scenes = [
   Boot,
   Preloader,
+  Title,
   Credits,
   Options,
   GameOver,

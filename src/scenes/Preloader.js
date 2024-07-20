@@ -1,29 +1,29 @@
 /* global Phaser */
-import { PreloaderKey, BootKey, TitleKey } from '../globals/SceneKeys.js'
+import { Preloader, Boot, Title } from '../globals/SceneKeys.js'
 
 class PreloaderScene extends Phaser.Scene {
-  constructor() {
-    super({ key: PreloaderKey });
+  constructor () {
+    super({ key: Preloader })
   }
 
-  preload() {
+  preload () {
     // Load all assets here
-    this.load.image('example', 'path/to/your/asset.png');
+    this.load.image('example', 'path/to/your/asset.png')
 
     // Emit progress events
     this.load.on('progress', (value) => {
-      this.scene.get(BootKey).events.emit('progress', value);
-    });
+      this.scene.get(Boot).events.emit('progress', value)
+    })
 
     this.load.on('complete', () => {
-      this.scene.get(BootKey).events.emit('complete');
-    });
+      this.scene.get(Boot).events.emit('complete')
+    })
   }
 
-  create() {
+  create () {
     // Start the main scene or any other scene after preloading is complete
-    this.scene.start(TitleKey);
+    this.scene.start(Title)
   }
 }
 
-export default PreloaderScene;
+export default PreloaderScene
