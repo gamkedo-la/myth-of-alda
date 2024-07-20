@@ -1,5 +1,5 @@
 /* global Phaser */
-import { Preloader, Boot, Title } from '../globals/SceneKeys.js'
+import { Preloader, Boot } from '../globals/SceneKeys.js'
 import { FontFamilies, StyleConfigs } from '../globals/FontKeys.js'
 import GameManager from '../managers/gameManager.js'
 
@@ -9,6 +9,7 @@ class PreloaderScene extends Phaser.Scene {
   }
 
   init () {
+    this.visible = false
     for (const config of StyleConfigs) {
       const element = document.createElement('style')
       document.head.appendChild(element)
@@ -26,12 +27,8 @@ class PreloaderScene extends Phaser.Scene {
     this.load.script('webfont', '../../public/fonts/webfont_loader.js')
 
     // Emit progress events
-    this.load.on(Phaser.Loader.Events.PROGRESS, (value) => {
-      this.scene.get(Boot).events.emit(Phaser.Loader.Events.PROGRESS, value)
-    })
-
-    this.load.on(Phaser.Loader.Events.COMPLETE, () => {
-      this.scene.get(Boot).events.emit(Phaser.Loader.Events.COMPLETE)
+    this.load.on(Phaser.Loader.Events.PROGRESS, value => {
+      this.scene.get(Boot).assetLoaded(value)
     })
   }
 
@@ -45,7 +42,8 @@ class PreloaderScene extends Phaser.Scene {
       },
       active: () => {
         // Start the main scene or any other scene after preloading is complete
-        this.scene.start(Title)
+        // this.scene.start(Title)
+        this.scene.get(Boot).loadingComplete()
       },
       inactive: () => {
         console.error('Font failed to load')
