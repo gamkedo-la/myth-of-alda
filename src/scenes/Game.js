@@ -16,6 +16,8 @@ class GameScene extends Phaser.Scene {
   create () {
     this.display = createTextDisplay(this)
     this.playerInput = buildPlayerInput(this)
+
+    //  Need to retrieve the initial text (description) for the current room and append it to the display
   }
 }
 
@@ -27,11 +29,30 @@ function createTextDisplay (scene) {
     textAlign: UIAttributes.LeftAlign,
     width: `${scene.game.canvas.width - 600}px`,
     height: '775px',
-    overflowY: 'scroll',
-    padding: '10px'
+    overflowY: 'hidden',
+    padding: '10px',
+    position: 'relative'
   })
-  element.node.innerHTML = 'This is a text display area.<br>It can show multiple lines of text.<br>It has a vertical scrollbar.'
-  console.log(element.node)
+
+  // Method to append new text at the bottom
+  element.appendText = function (newText) {
+    const newElement = document.createElement('div')
+    newElement.style.position = 'absolute'
+    newElement.style.bottom = '0'
+    newElement.innerHTML = newText
+    this.node.appendChild(newElement)
+  
+    // Get the height of the new element
+    const newElementHeight = newElement.offsetHeight
+  
+    // Adjust the position of all previously appended elements
+    const children = this.node.children
+    for (let i = 0; i < children.length - 1; i++) {
+      const child = children[i]
+      const currentBottom = parseInt(child.style.bottom, 10) || 0
+      child.style.bottom = `${currentBottom + newElementHeight}px`
+    }
+  }
 
   return element
 }
@@ -53,7 +74,12 @@ function buildPlayerInput (scene) {
 
   // Add event listener for Enter key detection
   scene.enterKey.on('down', () => {
-    // Do something with the player input (compromise.js...)
+    const inputText = element.node.value
+    if (inputText.trim() !== '') {
+      // Do something with the player input (compromise.js...)
+      scene.display.appendText(inputText)
+      element.node.value = '' // Clear the input field
+    }
   })
 
   return element

@@ -9,7 +9,8 @@ export default [
       semi: ["error", "never"],
       "space-before-function-paren": ["error", "always"], // Require space before function parenthesis
       "keyword-spacing": ["error", { "before": true, "after": true }], // Require space before and after keywords
-      quotes: ["error", "single"], // Require single quotes for strings
+      quotes: ["error", "single"], // Require single quotes for strings,
+      indent: ["error", 2], // Use 2 spaces for indentation
     }
   },
   pluginJs.configs.recommended,
