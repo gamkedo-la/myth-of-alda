@@ -1,4 +1,4 @@
-import nlp from '../compromise/src/three.js'
+/* global nlp */
 
 export default class InputManager {
   constructor (scene) {
