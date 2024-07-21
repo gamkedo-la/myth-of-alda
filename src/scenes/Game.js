@@ -1,6 +1,7 @@
 /* global Phaser */
 import { GameScene as Game } from '../globals/SceneKeys.js'
 import UIAttributes from '../globals/UIAttributes.js'
+import InputManager from '../managers/inputManager.js'
 
 class GameScene extends Phaser.Scene {
   constructor () {
@@ -8,6 +9,7 @@ class GameScene extends Phaser.Scene {
 
     this.display = null
     this.playerInput = null
+    this.inputManager = null
   }
 
   preload () {
@@ -16,7 +18,7 @@ class GameScene extends Phaser.Scene {
   create () {
     this.display = createTextDisplay(this)
     this.playerInput = buildPlayerInput(this)
-
+    this.inputManager = new InputManager(this)
     //  Need to retrieve the initial text (description) for the current room and append it to the display
   }
 }
