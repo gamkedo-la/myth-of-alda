@@ -2,6 +2,7 @@
 import { GameScene as Game } from '../globals/SceneKeys.js'
 import UIAttributes from '../globals/UIAttributes.js'
 import InputManager from '../managers/inputManager.js'
+import TextDisplay from '../uiComponents/TextDisplay.js'
 
 class GameScene extends Phaser.Scene {
   constructor () {
@@ -13,50 +14,25 @@ class GameScene extends Phaser.Scene {
   }
 
   preload () {
+    // load the JSON file containing the foyer room data from ../../public/dungeons/foyer.json
+    this.load.json('foyer', '../../public/dungeons/foyer.json')
+
+    // load the JSON files containing the room data for the other rooms associated with the current dungeon
+    // this.game.gameManager.currentDungeon.rooms.forEach(room => {
+    //   this.load.json(room.name, `../../public/dungeons/${this.game.gameManager.currentDungeon.name}/${room.name}.json`)
+    // })
   }
 
   create () {
-    this.display = createTextDisplay(this)
+    this.display = new TextDisplay(this, (this.game.canvas.width / 2), (this.game.canvas.height / 2 - 40), this.game.canvas.width - 600, 775)
     this.playerInput = buildPlayerInput(this)
     this.inputManager = new InputManager(this)
-    //  Need to retrieve the initial text (description) for the current room and append it to the display
-  }
-}
-
-function createTextDisplay (scene) {
-  const element = scene.add.dom((scene.game.canvas.width / 2), scene.game.canvas.height / 2 - 40, 'div', {
-    backgroundColor: UIAttributes.UIColor,
-    borderRadius: '10px',
-    font: UIAttributes.UIFontSize + ' ' + UIAttributes.UIFontFamily,
-    textAlign: UIAttributes.LeftAlign,
-    width: `${scene.game.canvas.width - 600}px`,
-    height: '775px',
-    overflowY: 'hidden',
-    padding: '10px',
-    position: 'relative'
-  })
-
-  // Method to append new text at the bottom
-  element.appendText = function (newText) {
-    const newElement = document.createElement('div')
-    newElement.style.position = 'absolute'
-    newElement.style.bottom = '0'
-    newElement.innerHTML = newText
-    this.node.appendChild(newElement)
-  
-    // Get the height of the new element
-    const newElementHeight = newElement.offsetHeight
-  
-    // Adjust the position of all previously appended elements
-    const children = this.node.children
-    for (let i = 0; i < children.length - 1; i++) {
-      const child = children[i]
-      const currentBottom = parseInt(child.style.bottom, 10) || 0
-      child.style.bottom = `${currentBottom + newElementHeight}px`
+    // Retrieve the description of the foyer and append it to the display
+    const foyerData = this.cache.json.get('foyer')
+    if (foyerData?.description) {
+      this.display.typeText(foyerData.detailedDescription)
     }
   }
-
-  return element
 }
 
 function buildPlayerInput (scene) {
@@ -78,8 +54,9 @@ function buildPlayerInput (scene) {
   scene.enterKey.on('down', () => {
     const inputText = element.node.value
     if (inputText.trim() !== '') {
-      // Do something with the player input (compromise.js...)
       scene.display.appendText(inputText)
+      // Input Manager uses compromise to process the input text
+      scene.inputManager.processInput(inputText)
       element.node.value = '' // Clear the input field
     }
   })

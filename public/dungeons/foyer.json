@@ -1,0 +1,52 @@
+{
+  "description": [
+    "As you open your eyes, you find you are laying on a pile of straw in a small, dimly lit room."
+  ],
+  "detailedDescription": [
+    "You are laying on a pile of straw in a small, square room with walls of rough hewn stone bricks and a low ceiling.",
+    "There is a pile of equipment in the corner and a heavy looking iron bound wooden door in one wall.",
+    "There don't appear to be any windows.",
+    "The room is dimly lit by a sputtering torch hung high in the wall next to the door.",
+    "There is a dank smell in the air suggesting too much moisture and insufficent airflow.",
+    "You are unsure how long you were unconscious, but you're not hungry yet, so it can't have been too long."
+  ],
+  "exits": [
+    {
+      "direction": "north",
+      "description": ["A heavy looking iron bound wooden door."],
+      "detailedDescription": [
+        "The door is made of thick wooden planks bound with iron bands.",
+        "It has a large iron handle and brackets for a large bar, but there is no bar in sight."
+      ],
+      "locked": false,
+      "key": null,
+      "destination": "NEED A WAY TO SPECIFY THAT THE DESTINATION OF THE FOYER IS THE FIRST ROOM OF WHICHEVER DUNGEON THE PLAYER IS IN"
+    }
+  ],
+  "items": [
+    {
+      "name": "torch",
+      "description": ["A sputtering torch hung high in the wall next to the door."],
+      "detailedDescription": [
+        "The torch is mounted in an iron bracket on the wall.",
+        "It is sputtering and casting flickering shadows around the room.",
+        "It has been burning for some time and is nearly spent."
+      ],
+      "canPickUp": true
+    },
+    {
+      "name": "pile of equipment",
+      "description": ["A pile of equipment in the corner."],
+      "detailedDescription": [
+        "The pile of equipment is a jumble of items.",
+        "There is a sword, a shield, a bow, a quiver of arrows, and a backpack.",
+        "The sword is a long, straight blade with a simple crossguard and a leather wrapped hilt.",
+        "The shield is a round wooden shield with a metal boss and a leather strap.",
+        "The bow is a longbow made of a single piece of wood with a string of sinew.",
+        "The quiver is made of leather and contains eleven arrows.",
+        "The backpack is made of leather and has a bedroll, a waterskin, and a pouch of dried meat."
+      ],
+      "canPickUp": true
+    }
+  ]
+}
